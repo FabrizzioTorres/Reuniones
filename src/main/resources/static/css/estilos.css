@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+nav {
+    background: #1f2937;
+    padding: 15px 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 14px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.btn-principal {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-editar {
+    background: #f59e0b;
+    color: white;
+}
+
+.btn-eliminar {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-volver {
+    background: #6b7280;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #e5e7eb;
+}
+
+form {
+    background: white;
+    padding: 25px;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.acciones {
+    margin-top: 20px;
+}

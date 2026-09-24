@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Miembros</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<nav>
+    <a th:href="@{/miembros}">Miembros</a>
+    <a th:href="@{/reuniones}">Reuniones</a>
+    <a th:href="@{/h2-console}" target="_blank">H2</a>
+</nav>
+
+<div class="container">
+
+    <h1>Gestión de Miembros</h1>
+
+    <a class="btn btn-principal"
+       th:href="@{/miembros/nuevo}">
+        + Nuevo miembro
+    </a>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="miembro : ${miembros}">
+
+            <td th:text="${miembro.id}"></td>
+            <td th:text="${miembro.nombres}"></td>
+            <td th:text="${miembro.apellidos}"></td>
+            <td th:text="${miembro.correo}"></td>
+            <td th:text="${miembro.telefono}"></td>
+
+            <td>
+
+                <a class="btn btn-editar"
+                   th:href="@{/miembros/editar/{id}(id=${miembro.id})}">
+                    Editar
+                </a>
+
+                <a class="btn btn-eliminar"
+                   th:href="@{/miembros/eliminar/{id}(id=${miembro.id})}"
+                   onclick="return confirm('¿Eliminar este miembro?');">
+                    Eliminar
+                </a>
+
+            </td>
+
+        </tr>
+
+        <tr th:if="${#lists.isEmpty(miembros)}">
+            <td colspan="6">
+                No hay miembros registrados.
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

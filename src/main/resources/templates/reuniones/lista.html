@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reuniones</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+
+<nav>
+    <a th:href="@{/miembros}">Miembros</a>
+    <a th:href="@{/reuniones}">Reuniones</a>
+    <a th:href="@{/h2-console}" target="_blank">H2</a>
+</nav>
+
+<div class="container">
+
+    <h1>Gestión de Reuniones</h1>
+
+    <a class="btn btn-principal"
+       th:href="@{/reuniones/nueva}">
+        + Nueva reunión
+    </a>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Lugar</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="reunion : ${reuniones}">
+
+            <td th:text="${reunion.id}"></td>
+            <td th:text="${reunion.titulo}"></td>
+            <td th:text="${reunion.fecha}"></td>
+            <td th:text="${reunion.hora}"></td>
+            <td th:text="${reunion.lugar}"></td>
+            <td th:text="${reunion.descripcion}"></td>
+
+            <td>
+
+                <a class="btn btn-editar"
+                   th:href="@{/reuniones/editar/{id}(id=${reunion.id})}">
+                    Editar
+                </a>
+
+                <a class="btn btn-eliminar"
+                   th:href="@{/reuniones/eliminar/{id}(id=${reunion.id})}"
+                   onclick="return confirm('¿Eliminar esta reunión?');">
+                    Eliminar
+                </a>
+
+            </td>
+
+        </tr>
+
+        <tr th:if="${#lists.isEmpty(reuniones)}">
+            <td colspan="7">
+                No hay reuniones registradas.
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

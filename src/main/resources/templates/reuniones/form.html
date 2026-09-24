@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de reunión</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+
+<nav>
+    <a th:href="@{/miembros}">Miembros</a>
+    <a th:href="@{/reuniones}">Reuniones</a>
+</nav>
+
+<div class="container">
+
+    <h1 th:text="${reunion.id == null ? 'Nueva reunión' : 'Editar reunión'}"></h1>
+
+    <form th:action="@{/reuniones/guardar}"
+          th:object="${reunion}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <label>Título</label>
+        <input type="text"
+               th:field="*{titulo}"
+               required>
+
+        <label>Fecha</label>
+        <input type="date"
+               th:field="*{fecha}"
+               required>
+
+        <label>Hora</label>
+        <input type="time"
+               th:field="*{hora}"
+               required>
+
+        <label>Lugar</label>
+        <input type="text"
+               th:field="*{lugar}"
+               required>
+
+        <label>Descripción</label>
+        <textarea th:field="*{descripcion}"></textarea>
+
+        <div class="acciones">
+
+            <button class="btn btn-principal"
+                    type="submit">
+                Guardar
+            </button>
+
+            <a class="btn btn-volver"
+               th:href="@{/reuniones}">
+                Volver
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
