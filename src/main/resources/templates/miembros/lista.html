@@ -8,9 +8,23 @@
 <body>
 
 <nav>
-    <a th:href="@{/miembros}">Miembros</a>
-    <a th:href="@{/reuniones}">Reuniones</a>
-    <a th:href="@{/h2-console}" target="_blank">H2</a>
+
+    <a th:href="@{/miembros}">
+        Miembros
+    </a>
+
+    <a th:href="@{/reuniones}">
+        Reuniones
+    </a>
+
+    <a th:href="@{/acuerdos}">
+        Acuerdos
+    </a>
+
+    <a th:href="@{/asistencias}">
+        Asistencias
+    </a>
+
 </nav>
 
 <div class="container">
@@ -26,7 +40,7 @@
 
         <thead>
         <tr>
-            <th>ID</th>
+            <th>N°</th>
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Correo</th>
@@ -37,9 +51,8 @@
 
         <tbody>
 
-        <tr th:each="miembro : ${miembros}">
-
-            <td th:text="${miembro.id}"></td>
+        <tr th:each="miembro, iterStat : ${miembros}">
+            <td th:text="${iterStat.count}"></td>
             <td th:text="${miembro.nombres}"></td>
             <td th:text="${miembro.apellidos}"></td>
             <td th:text="${miembro.correo}"></td>

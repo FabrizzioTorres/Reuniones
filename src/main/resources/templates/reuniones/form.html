@@ -9,8 +9,23 @@
 <body>
 
 <nav>
-    <a th:href="@{/miembros}">Miembros</a>
-    <a th:href="@{/reuniones}">Reuniones</a>
+
+    <a th:href="@{/miembros}">
+        Miembros
+    </a>
+
+    <a th:href="@{/reuniones}">
+        Reuniones
+    </a>
+
+    <a th:href="@{/acuerdos}">
+        Acuerdos
+    </a>
+
+    <a th:href="@{/asistencias}">
+        Asistencias
+    </a>
+
 </nav>
 
 <div class="container">
@@ -30,12 +45,14 @@
 
         <label>Fecha</label>
         <input type="date"
-               th:field="*{fecha}"
+               name="fecha"
+               th:value="${reunion.fecha}"
                required>
 
         <label>Hora</label>
         <input type="time"
-               th:field="*{hora}"
+               name="hora"
+               th:value="${reunion.hora}"
                required>
 
         <label>Lugar</label>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Lista de Asistencia</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/estilos.css}">
+
+</head>
+
+
+<body>
+
+<nav>
+
+    <a th:href="@{/miembros}">
+        Miembros
+    </a>
+
+    <a th:href="@{/reuniones}">
+        Reuniones
+    </a>
+
+    <a th:href="@{/acuerdos}">
+        Acuerdos
+    </a>
+
+    <a th:href="@{/asistencias}">
+        Asistencias
+    </a>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Lista de Asistencia</h1>
+
+    <h2 th:text="${reunion.titulo}">
+        Nombre de la reunión
+    </h2>
+
+
+    <div class="info-reunion">
+
+        <p>
+            <strong>Fecha:</strong>
+            <span th:text="${reunion.fecha}"></span>
+        </p>
+
+        <p>
+            <strong>Hora:</strong>
+            <span th:text="${reunion.hora}"></span>
+        </p>
+
+        <p>
+            <strong>Lugar:</strong>
+            <span th:text="${reunion.lugar}"></span>
+        </p>
+
+    </div>
+
+
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>N°</th>
+            <th>Miembro</th>
+            <th>Correo</th>
+            <th>Estado de asistencia</th>
+        </tr>
+
+        </thead>
+
+
+        <tbody>
+
+        <tr th:each="miembro, iterStat : ${miembros}">
+            <td th:text="${iterStat.count}"></td>
+
+
+            <td th:text="${miembro.nombres + ' ' + miembro.apellidos}">
+            </td>
+
+
+            <td th:text="${miembro.correo}">
+            </td>
+
+
+            <td>
+
+                <!-- Tiene asistencia registrada -->
+
+                <span
+                        th:if="${estadosGuardados[miembro.id] != null}"
+                        th:text="${estadosGuardados[miembro.id]}"
+                        th:classappend="${'estado-' + #strings.toLowerCase(estadosGuardados[miembro.id].toString())}">
+                </span>
+
+
+                <!-- No tiene asistencia registrada -->
+
+                <span
+                        th:if="${estadosGuardados[miembro.id] == null}"
+                        class="estado-sin-registrar">
+
+                    SIN REGISTRAR
+
+                </span>
+
+            </td>
+
+        </tr>
+
+
+        <tr th:if="${#lists.isEmpty(miembros)}">
+
+            <td colspan="4">
+                No existen miembros registrados.
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <div class="acciones">
+
+        <a th:href="@{/asistencias/reunion/{id}(id=${reunion.id})}"
+           class="btn btn-principal">
+
+            Registrar / Editar asistencia
+
+        </a>
+
+
+        <a th:href="@{/asistencias}"
+           class="btn btn-volver">
+
+            Volver
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

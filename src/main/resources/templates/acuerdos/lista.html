@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Acuerdos</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/estilos.css}">
+</head>
+
+<body>
+
+<nav>
+
+    <a th:href="@{/miembros}">
+        Miembros
+    </a>
+
+    <a th:href="@{/reuniones}">
+        Reuniones
+    </a>
+
+    <a th:href="@{/acuerdos}">
+        Acuerdos
+    </a>
+
+    <a th:href="@{/asistencias}">
+        Asistencias
+    </a>
+
+</nav>
+
+<div class="container">
+
+    <h1>Gestión de Acuerdos</h1>
+
+    <a class="btn btn-principal"
+       th:href="@{/acuerdos/nuevo}">
+        + Nuevo acuerdo
+    </a>
+
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>N°</th>
+            <th>Acuerdo</th>
+            <th>Miembro</th>
+            <th>Reunión</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="acuerdo, iterStat : ${acuerdos}">
+            <td th:text="${iterStat.count}"></td>
+
+            <td th:text="${acuerdo.descripcion}">
+            </td>
+
+            <td>
+                <span
+                        th:text="${acuerdo.miembro.nombres + ' ' + acuerdo.miembro.apellidos}">
+                </span>
+            </td>
+
+            <td th:text="${acuerdo.reunion.titulo}">
+            </td>
+
+            <td th:text="${acuerdo.reunion.fecha}">
+            </td>
+
+            <td>
+
+                <a class="btn btn-editar"
+                   th:href="@{/acuerdos/editar/{id}(id=${acuerdo.id})}">
+                    Editar
+                </a>
+
+                <a class="btn btn-eliminar"
+                   th:href="@{/acuerdos/eliminar/{id}(id=${acuerdo.id})}"
+                   onclick="return confirm('¿Eliminar este acuerdo?');">
+                    Eliminar
+                </a>
+
+            </td>
+
+        </tr>
+
+        <tr th:if="${#lists.isEmpty(acuerdos)}">
+
+            <td colspan="6">
+                No hay acuerdos registrados.
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>

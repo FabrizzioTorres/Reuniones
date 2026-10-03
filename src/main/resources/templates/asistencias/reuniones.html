@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Asistencias</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/estilos.css}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <a th:href="@{/miembros}">
+        Miembros
+    </a>
+
+    <a th:href="@{/reuniones}">
+        Reuniones
+    </a>
+
+    <a th:href="@{/acuerdos}">
+        Acuerdos
+    </a>
+
+    <a th:href="@{/asistencias}">
+        Asistencias
+    </a>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Registro de Asistencias</h1>
+
+    <p>
+        Seleccione una reunión para registrar
+        la asistencia de los miembros.
+    </p>
+
+
+    <table>
+
+        <thead>
+
+        <tr>
+            <th>N°</th>
+            <th>Reunión</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Acción</th>
+        </tr>
+
+        </thead>
+
+
+        <tbody>
+
+        <tr th:each="reunion, iterStat : ${reuniones}">
+
+            <td th:text="${iterStat.count}">
+            </td>
+
+            <td th:text="${reunion.titulo}">
+            </td>
+
+            <td th:text="${reunion.fecha}">
+            </td>
+
+            <td th:text="${reunion.hora}">
+            </td>
+
+            <td>
+
+                <a class="btn btn-principal"
+                   th:href="@{/asistencias/reunion/{id}(id=${reunion.id})}">
+
+                    Registrar asistencia
+
+                </a>
+
+
+                <a class="btn btn-principal"
+                   th:href="@{/asistencias/reunion/{id}/lista(id=${reunion.id})}">
+
+                    Ver asistencia
+
+                </a>
+
+            </td>
+
+        </tr>
+
+
+        <tr th:if="${#lists.isEmpty(reuniones)}">
+
+            <td colspan="5">
+                No existen reuniones registradas.
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

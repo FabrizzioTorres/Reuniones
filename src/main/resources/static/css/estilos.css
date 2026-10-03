@@ -90,7 +90,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select{
     width: 100%;
     padding: 10px;
     border: 1px solid #bbb;
@@ -104,4 +105,38 @@ textarea {
 
 .acciones {
     margin-top: 20px;
+}
+.estado-presente,
+.estado-ausente,
+.estado-justificado,
+.estado-sin-registrar {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.estado-presente {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.estado-ausente {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.estado-justificado {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.estado-sin-registrar {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.info-reunion {
+    margin-bottom: 20px;
 }
